@@ -53,8 +53,8 @@ public class SeaHorse {
         }
         int localX = path[indexOnMap][0];
         int localY = path[indexOnMap][1];
-        x = 651 + (localY-localX)*64/2 - 32;
-        y = 100 + (localY+localX)*32/2 - 64;
+        x = 651 + (localY-localX)*64/2;
+        y = 100 + (localY+localX)*32/2-20;
         steps--;
     }
 }

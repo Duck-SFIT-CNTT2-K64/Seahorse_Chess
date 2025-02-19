@@ -48,14 +48,14 @@ public class Player {
         //LOCAL TO GLOBAL
         int localX = deployCoordinates[playerIndex][0];
         int localY = deployCoordinates[playerIndex][1];
-        deployCoordinates[playerIndex][0] = 651 + (localY-localX)*64/2 - 32;
-        deployCoordinates[playerIndex][1] = 100 + (localY+localX)*32/2 - 64;
+        deployCoordinates[playerIndex][0] = 651 + (localY-localX)*64/2;
+        deployCoordinates[playerIndex][1] = 100 + (localY+localX)*32/2-20;
 
         for (int i = 0; i < 4; i++) {
             localX = startStableCoordinates[playerIndex][i][0];
             localY = startStableCoordinates[playerIndex][i][1];
-            startStableCoordinates[playerIndex][i][0] = 651 + (localY-localX)*64/2 - 32;
-            startStableCoordinates[playerIndex][i][1] = 100 + (localY+localX)*32/2 - 64;
+            startStableCoordinates[playerIndex][i][0] = 651 + (localY-localX)*64/2;
+            startStableCoordinates[playerIndex][i][1] = 100 + (localY+localX)*32/2-20;
         }
 
         //CHOOSE SEAHORSE BUTTONS
@@ -66,7 +66,7 @@ public class Player {
 
         //DEPLOY BUTTON
         deployButton.addActionListener(e -> DeploySeaHorse());
-        deployButton.setBounds(deployCoordinates[playerIndex][0], deployCoordinates[playerIndex][1], 32, 32);
+        deployButton.setBounds(deployCoordinates[playerIndex][0], deployCoordinates[playerIndex][1]-64, 64, 32);
 
         UnactiveButton();
 
@@ -114,7 +114,7 @@ public class Player {
         }
         
         for (int i = 0; i < 4; i++) {
-            chooseSeaHorseButton.get(i).setBounds(seaHorses.get(i).x, seaHorses.get(i).y, 32, 32);
+            chooseSeaHorseButton.get(i).setBounds(seaHorses.get(i).x, seaHorses.get(i).y-32, 32, 32);
             chooseSeaHorseButton.get(i).setVisible(!seaHorses.get(i).isInStartStable);
         }
     }
