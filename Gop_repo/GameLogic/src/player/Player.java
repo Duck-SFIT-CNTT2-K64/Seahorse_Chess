@@ -63,7 +63,7 @@ public class Player {
             int index = i;
             chooseSeaHorseButton.get(i).addActionListener(e -> MoveSeaHorse(index));
         }
-
+        
         //DEPLOY BUTTON
         deployButton.addActionListener(e -> DeploySeaHorse());
         deployButton.setBounds(deployCoordinates[playerIndex][0], deployCoordinates[playerIndex][1]-64, 64, 32);

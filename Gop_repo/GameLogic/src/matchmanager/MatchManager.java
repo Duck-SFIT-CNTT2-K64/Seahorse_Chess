@@ -32,7 +32,8 @@ public class MatchManager {
     public SeaHorse currentSeaHorse = null;
 
     //MAP INFOR
-    public int[][] coordinates = new int[56][2];
+    
+    //public int[][] coordinates = new int[56][2];
     
     //ASSETS
     private int[][] avatarCoordinates = new int[4][2];
