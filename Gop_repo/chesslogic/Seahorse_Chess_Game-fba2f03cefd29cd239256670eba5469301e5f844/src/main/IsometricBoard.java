@@ -1,10 +1,13 @@
 package main;
 
+import dice.Dice;
 import horse.Pair;
 import horse.SeaHorse;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
@@ -12,6 +15,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class IsometricBoard extends JPanel{
@@ -22,6 +26,12 @@ public class IsometricBoard extends JPanel{
     public static int startX = 500;
     public static int startY = 100;
     private int lastMouseX, lastMouseY;
+
+    public Dice dice;
+    private BufferedImage[] diceImages;
+    private BufferedImage currentDiceImage;
+    private JButton rollDiceButton;
+    
 
     //change tile
     private BufferedImage tileImage;
@@ -42,6 +52,19 @@ public class IsometricBoard extends JPanel{
     private BufferedImage tank1;
     private SeaHorse seaHorse;
     public IsometricBoard(){
+        dice = new Dice();
+        loadDiceImages();
+        currentDiceImage = diceImages[0];
+        setLayout(null);
+        rollDiceButton = new JButton("Roll Dice");
+        rollDiceButton.setBounds(50, 50, 100, 50);
+        rollDiceButton.addActionListener((ActionListener) new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                rollDice();
+            }
+        });
+        add(rollDiceButton);
         try {
             tileImage = ImageIO.read(new File("./assets/Land/blocks_white.png"));
             tileImage2 = ImageIO.read(new File("./assets/Land/blocks_white_flat.png"));
@@ -65,6 +88,8 @@ public class IsometricBoard extends JPanel{
             e.printStackTrace();
         }
         setBackground(Color.BLACK);
+        
+        // thay đổi vị trí bàn cờ
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e){
@@ -92,6 +117,22 @@ public class IsometricBoard extends JPanel{
                 repaint();
             }
         });
+    }
+
+    // xúc sắc
+    private void loadDiceImages(){
+        diceImages = new BufferedImage[6];
+        try {
+            for(int i = 0; i < 6; i++){
+                diceImages[i] = ImageIO.read(new File("./assets/DicePack/"+(i+1)+".png"));
+            }
+        } catch (IOException e) {
+        }
+    }
+    private void rollDice(){
+        int roll = dice.roll();
+        currentDiceImage = diceImages[roll-1];
+        repaint(); 
     }
     @Override
     protected void paintComponent(Graphics g){
@@ -157,12 +198,14 @@ public class IsometricBoard extends JPanel{
         }
         //g2d.drawImage(tank1, startX + (6-1)*TILE_WIDTH/2-32, startY+(6+1)*TILE_HEIGHT/2-64, null);
         // public void Paint(Garphics g){
+        if(currentDiceImage!=null){
+            g2d.drawImage(currentDiceImage, 200, 50, 64, 64, null);
+        }
         Pair<Integer, Integer> position = seaHorse.getPosition();
         int x = startX + (position.getValue()-position.getKey())*TILE_WIDTH/2 - 32;
         int y = startY + (position.getValue()+ position.getKey())*TILE_HEIGHT/2 - 64;
         g2d.drawImage(seaHorse.getImage(), x, y, null);
         // }
-        
     }
 
 }
