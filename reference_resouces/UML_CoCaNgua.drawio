@@ -1,0 +1,88 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0" version="26.0.5">
+  <diagram name="Trang-1" id="nM3GeSLZAt5k1y36EPF-">
+    <mxGraphModel dx="1245" dy="768" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="K7CtpThpVVTTBnfctwDa-1" value="Board" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="80" width="160" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="K7CtpThpVVTTBnfctwDa-2" value="+ cells: mảng 2D chứa các ô.&lt;div&gt;+ Pieces:Danh sách quân cờ trên bàn cờ.&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="K7CtpThpVVTTBnfctwDa-1">
+          <mxGeometry y="26" width="160" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="K7CtpThpVVTTBnfctwDa-3" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="K7CtpThpVVTTBnfctwDa-1">
+          <mxGeometry y="100" width="160" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="K7CtpThpVVTTBnfctwDa-4" value="+ draw(Graphics &amp;lt;name&amp;gt;): Vẽ bàn cờ.&lt;div&gt;+ updatePosition(Piece piece, int newPosition): Cập nhật vị trí quân cờ.&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="K7CtpThpVVTTBnfctwDa-1">
+          <mxGeometry y="108" width="160" height="82" as="geometry" />
+        </mxCell>
+        <mxCell id="K7CtpThpVVTTBnfctwDa-5" value="Piece" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="700" y="80" width="160" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="K7CtpThpVVTTBnfctwDa-6" value="+ color: Màu sắc quân cờ&lt;div&gt;+ position: Vị trí hiện tại trên bàn&lt;/div&gt;&lt;div&gt;+ state: Trạng thái (ở nhà, di chuyển, về đích)&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="K7CtpThpVVTTBnfctwDa-5">
+          <mxGeometry y="26" width="160" height="84" as="geometry" />
+        </mxCell>
+        <mxCell id="K7CtpThpVVTTBnfctwDa-7" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="K7CtpThpVVTTBnfctwDa-5">
+          <mxGeometry y="110" width="160" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="K7CtpThpVVTTBnfctwDa-8" value="+ move(int steps): Di chuyển quân cờ theo số bước." style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="K7CtpThpVVTTBnfctwDa-5">
+          <mxGeometry y="118" width="160" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="K7CtpThpVVTTBnfctwDa-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="K7CtpThpVVTTBnfctwDa-9" target="K7CtpThpVVTTBnfctwDa-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="K7CtpThpVVTTBnfctwDa-9" value="Player" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="540" width="160" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="K7CtpThpVVTTBnfctwDa-10" value="+ name: Tên người chơi&lt;div&gt;+ pieces: Danh sách quân cờ&lt;/div&gt;&lt;div&gt;+turn: Lượt chơi&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="K7CtpThpVVTTBnfctwDa-9">
+          <mxGeometry y="26" width="160" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="K7CtpThpVVTTBnfctwDa-11" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="K7CtpThpVVTTBnfctwDa-9">
+          <mxGeometry y="100" width="160" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="K7CtpThpVVTTBnfctwDa-12" value="+ takeTurn(): Xử lý lượt chơi." style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="K7CtpThpVVTTBnfctwDa-9">
+          <mxGeometry y="108" width="160" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="K7CtpThpVVTTBnfctwDa-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="K7CtpThpVVTTBnfctwDa-13" target="K7CtpThpVVTTBnfctwDa-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="K7CtpThpVVTTBnfctwDa-13" value="Dice" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="840" y="543" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="K7CtpThpVVTTBnfctwDa-14" value="+ value: Giá trị xúc xắc (1-6)." style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="K7CtpThpVVTTBnfctwDa-13">
+          <mxGeometry y="26" width="160" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="K7CtpThpVVTTBnfctwDa-15" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="K7CtpThpVVTTBnfctwDa-13">
+          <mxGeometry y="70" width="160" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="K7CtpThpVVTTBnfctwDa-16" value="+ roll(): Sinh giá trị ngẫu nhiên" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="K7CtpThpVVTTBnfctwDa-13">
+          <mxGeometry y="78" width="160" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="K7CtpThpVVTTBnfctwDa-17" value="Game" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="190" y="180" width="150" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="K7CtpThpVVTTBnfctwDa-18" value="+ players: Danh sách người chơi.&lt;div&gt;+ currentTurn: Người chơi hiện tại&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="K7CtpThpVVTTBnfctwDa-17">
+          <mxGeometry y="26" width="150" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="K7CtpThpVVTTBnfctwDa-19" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="K7CtpThpVVTTBnfctwDa-17">
+          <mxGeometry y="100" width="150" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="K7CtpThpVVTTBnfctwDa-20" value="+ startGame(): Bắt đầu trò chơi&lt;div&gt;+ nextTurn(): Chuyển lượt.&lt;/div&gt;&lt;div&gt;+ checkWin(): Kiểm tra điều kiện thắng.&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="K7CtpThpVVTTBnfctwDa-17">
+          <mxGeometry y="108" width="150" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="K7CtpThpVVTTBnfctwDa-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="K7CtpThpVVTTBnfctwDa-10" target="K7CtpThpVVTTBnfctwDa-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="K7CtpThpVVTTBnfctwDa-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="K7CtpThpVVTTBnfctwDa-18" target="K7CtpThpVVTTBnfctwDa-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="K7CtpThpVVTTBnfctwDa-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="K7CtpThpVVTTBnfctwDa-2" target="K7CtpThpVVTTBnfctwDa-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="K7CtpThpVVTTBnfctwDa-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="K7CtpThpVVTTBnfctwDa-12" target="K7CtpThpVVTTBnfctwDa-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
