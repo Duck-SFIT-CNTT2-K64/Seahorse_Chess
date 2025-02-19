@@ -13,6 +13,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class IsometricBoard extends JPanel{
+    //change board
     private int TILE_WIDTH = 64;
     private int TILE_HEIGHT = 32;
     private int BOARD_SIZE = 15;
@@ -20,6 +21,7 @@ public class IsometricBoard extends JPanel{
     private int startY = 100;
     private int lastMouseX, lastMouseY;
 
+    //change tile
     private BufferedImage tileImage;
     private BufferedImage tileImage2;
     private BufferedImage blueflat;
@@ -51,6 +53,7 @@ public class IsometricBoard extends JPanel{
             greencircle = ImageIO.read(new File("./assets/Land/blocks_green_circle_flat.png"));
             redcircle = ImageIO.read(new File("./assets/Land/blocks_red_circle_flat.png"));
             yellowcircle = ImageIO.read(new File("./assets/Land/blocks_yellow_circle_flat.png"));
+
             
         } catch (IOException e) {
         }
@@ -84,6 +87,7 @@ public class IsometricBoard extends JPanel{
             for(int col = 0; col < BOARD_SIZE; col++){
                 int x = startX + (col - row) * TILE_WIDTH/2 ;
                 int y = startY + (col + row) * TILE_HEIGHT/2 ;
+
                 BufferedImage currentImage;
                 if(row==7 && col == 0){
                     currentImage = greencircle;
@@ -136,6 +140,7 @@ public class IsometricBoard extends JPanel{
                 g2d.drawImage(currentImage, x, y, null);
             }
         }
+
         // public void Paint(Garphics g){
         
         // }
