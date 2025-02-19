@@ -1,5 +1,7 @@
 package main;
 
+import horse.Pair;
+import horse.SeaHorse;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -17,8 +19,8 @@ public class IsometricBoard extends JPanel{
     private int TILE_WIDTH = 64;
     private int TILE_HEIGHT = 32;
     private int BOARD_SIZE = 15;
-    private int startX = 500;
-    private int startY = 100;
+    public static int startX = 500;
+    public static int startY = 100;
     private int lastMouseX, lastMouseY;
 
     //change tile
@@ -37,6 +39,8 @@ public class IsometricBoard extends JPanel{
     private BufferedImage redcircle;
     private BufferedImage yellowcircle;
 
+    private BufferedImage tank1;
+    private SeaHorse seaHorse;
     public IsometricBoard(){
         try {
             tileImage = ImageIO.read(new File("./assets/Land/blocks_white.png"));
@@ -53,9 +57,12 @@ public class IsometricBoard extends JPanel{
             greencircle = ImageIO.read(new File("./assets/Land/blocks_green_circle_flat.png"));
             redcircle = ImageIO.read(new File("./assets/Land/blocks_red_circle_flat.png"));
             yellowcircle = ImageIO.read(new File("./assets/Land/blocks_yellow_circle_flat.png"));
+            tank1 = ImageIO.read(new File("./assets/Tank/Tiger_export/Merged/german_tiger_merged1.png"));
 
+            seaHorse = new SeaHorse(tank1);
             
         } catch (IOException e) {
+            e.printStackTrace();
         }
         setBackground(Color.BLACK);
         addMouseListener(new MouseAdapter() {
@@ -77,6 +84,14 @@ public class IsometricBoard extends JPanel{
                 repaint();
             } 
         });
+
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e){
+                seaHorse.move();
+                repaint();
+            }
+        });
     }
     @Override
     protected void paintComponent(Graphics g){
@@ -90,13 +105,13 @@ public class IsometricBoard extends JPanel{
 
                 BufferedImage currentImage;
                 if(row==7 && col == 0){
-                    currentImage = greencircle;
+                    currentImage = redcircle;
                 }
                 else if(row==0 && col == 7){
                     currentImage = bluecircle;
                 }
                 else if(row==7 && col == 14){
-                    currentImage = redcircle;
+                    currentImage = greencircle;
                 }
                 else if(row==14 && col == 7){
                     currentImage = yellowcircle;
@@ -111,13 +126,13 @@ public class IsometricBoard extends JPanel{
                     currentImage = tileImage2;
                 }
                 else if((col >= 1 && col <= 6 && row == 7)|| (row == 8 && col == 0)){
-                    currentImage = green;
+                    currentImage = red;
                 }
                 else if ((row==1&&col==10)||(row==1&&col==13)||(row==4&&col==10)||(row==4&&col==13)) {
                     currentImage = tileImage2;
                 }
                 else if((row == 7 && col >= 8 && col < 14)|| (row == 6 && col == 14)){
-                    currentImage = red;
+                    currentImage = green;
                 }
                 else if ((row==10&&col==10)||(row==10&&col==13)||(row==13&&col==10)||(row==13&&col==13)) {
                     currentImage = tileImage2;
@@ -128,9 +143,9 @@ public class IsometricBoard extends JPanel{
                 else if(row < 6 && col < 6){
                     currentImage = blueflat;
                 }else if(row >= 9 && col < 6){
-                    currentImage = greenflat;
-                }else if(row < 6 && col >= 9){
                     currentImage = redflat;
+                }else if(row < 6 && col >= 9){
+                    currentImage = greenflat;
                 }else if(row >= 9 && col >= 9){
                     currentImage = yellowflat;
                 }
@@ -140,9 +155,12 @@ public class IsometricBoard extends JPanel{
                 g2d.drawImage(currentImage, x, y, null);
             }
         }
-
+        //g2d.drawImage(tank1, startX + (6-1)*TILE_WIDTH/2-32, startY+(6+1)*TILE_HEIGHT/2-64, null);
         // public void Paint(Garphics g){
-        
+        Pair<Integer, Integer> position = seaHorse.getPosition();
+        int x = startX + (position.getValue()-position.getKey())*TILE_WIDTH/2 - 32;
+        int y = startY + (position.getValue()+ position.getKey())*TILE_HEIGHT/2 - 64;
+        g2d.drawImage(seaHorse.getImage(), x, y, null);
         // }
         
     }
