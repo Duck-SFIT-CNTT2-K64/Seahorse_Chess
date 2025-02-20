@@ -128,6 +128,15 @@ public class MatchManager {
 
     public void Update() {
         if (currentSeaHorse != null) {
+
+            if(currentSeaHorse.indexOnMap == (players.get(currentPlayerNumber).deployIndexOnMap[currentPlayerNumber]-2)){
+                currentSeaHorse.steps = 0;
+                currentSeaHorse = null;
+                EndPlayerTurn();
+            }
+            // if(currentSeaHorse.indexOnMap == (players.get(currentPlayerNumber).deployIndexOnMap[currentPlayerNumber]-1)){
+
+            // }
             //check next cell empty or not
                 //empty
                     //check next cell have effect or not

@@ -19,7 +19,7 @@ public class Player {
     public ArrayList<JButton> chooseSeaHorseButton = new ArrayList<>();
 
     public int indexOfSeaHorseOnDeploy = -1;
-    public int[] deployIndexOnMap = {12, 51, 38, 25};
+    public int[] deployIndexOnMap = {14, 0, 42, 28};
     public int[][] deployCoordinates = {
         {8,0},
         {0,6},
@@ -150,5 +150,25 @@ public class Player {
         if (index == indexOfSeaHorseOnDeploy) {
             indexOfSeaHorseOnDeploy = -1;
         }
+
+
     }
+
+    // boolean checkStartWinCoordinates(){
+    //     if(matchManager.diceNumber + seaHorses)
+    // }
+
+    // WIN CONDITION
+    public int[][] startWinCoordinates = {
+        {7,0},
+        {0,7},
+        {7,14},
+        {14,7},
+    };
+    public int[][][] WinCoordinates = {
+        {{7,1},{7,2},{7,3},{7,4},{7,5},{7,6}}, 
+        {{1,7},{2,7},{3,7},{4,7},{5,7},{6,7}},
+        {{7,8}, {7,9}, {7,10}, {7,11}, {7,12}, {7,13}},
+        {{8,7}, {9,7}, {10,7}, {11,7}, {12,7}, {13,7}},
+    };
 }
