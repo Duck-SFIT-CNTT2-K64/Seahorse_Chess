@@ -19,7 +19,7 @@ public class Player {
     public ArrayList<JButton> chooseSeaHorseButton = new ArrayList<>();
 
     public int indexOfSeaHorseOnDeploy = -1;
-    public int[] deployIndexOnMap = {14, 0, 42, 28};
+    public int[] deployIndexOnMap = {12, 51, 38, 25};
     public int[][] deployCoordinates = {
         {8,0},
         {0,6},

@@ -1,4 +1,3 @@
-
 import gamethread.GameThread;
 import javax.swing.JFrame;
 
