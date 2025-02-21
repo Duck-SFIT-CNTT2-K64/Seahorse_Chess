@@ -7,9 +7,13 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
+
+
+
 public class IsometricBoard{
     private int TILE_WIDTH = 64;
     private int TILE_HEIGHT = 32;
+    //thay doi kich co cua ban co
     private int BOARD_SIZE = 15;
     private int startX = 651;
     private int startY = 100;

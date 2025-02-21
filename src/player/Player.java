@@ -21,10 +21,10 @@ public class Player {
     public int indexOfSeaHorseOnDeploy = -1;
     public int[] deployIndexOnMap = {12, 51, 38, 25};
     public int[][] deployCoordinates = {
-        {8,0},
-        {0,6},
-        {6,14},
-        {14,8}
+        {8,0}, //red
+        {0,6}, //blue
+        {6,14}, //green
+        {14,8}, //yellow
     };
     public int[][][] startStableCoordinates = {
         {{10,1},{10,4},{13,1},{13,4}},
@@ -159,13 +159,13 @@ public class Player {
     // }
 
     // WIN CONDITION
-    public int[][] startWinCoordinates = {
+    public static int[][] startWinCoordinates = {
         {7,0},
         {0,7},
         {7,14},
         {14,7},
     };
-    public int[][][] WinCoordinates = {
+    public static int[][][] WinCoordinates = {
         {{7,1},{7,2},{7,3},{7,4},{7,5},{7,6}}, 
         {{1,7},{2,7},{3,7},{4,7},{5,7},{6,7}},
         {{7,8}, {7,9}, {7,10}, {7,11}, {7,12}, {7,13}},

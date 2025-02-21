@@ -36,9 +36,9 @@ public class MatchManager {
     //public int[][] coordinates = new int[56][2];
     
     //ASSETS
-    private int[][] avatarCoordinates = new int[4][2];
-    private BufferedImage[] unactivePlayerAvatars = new BufferedImage[4];
-    private BufferedImage[] activePlayerAvatars = new BufferedImage[4];
+    private final int[][] avatarCoordinates = new int[4][2];
+    private final BufferedImage[] unactivePlayerAvatars = new BufferedImage[4];
+    private final BufferedImage[] activePlayerAvatars = new BufferedImage[4];
     private BufferedImage rollSkipPanelBackground;
 
     //BOARD
@@ -128,12 +128,58 @@ public class MatchManager {
 
     public void Update() {
         if (currentSeaHorse != null) {
-
-            if(currentSeaHorse.indexOnMap == (players.get(currentPlayerNumber).deployIndexOnMap[currentPlayerNumber]-2)){
+            System.out.println(currentSeaHorse.indexOnMap);
+            // if((currentSeaHorse.indexOnMap < players.get(currentPlayerNumber).deployIndexOnMap[currentPlayerNumber] )&&currentSeaHorse.indexOnMap + diceNumber >= (players.get(currentPlayerNumber).deployIndexOnMap[currentPlayerNumber])){
+            //     int x = SeaHorse.path[players.get(currentPlayerNumber).deployIndexOnMap[currentPlayerNumber]][0];
+            //     int y = SeaHorse.path[players.get(currentPlayerNumber).deployIndexOnMap[currentPlayerNumber]][1];
+            //     System.out.println("x: " + x + " y: " + y);
+            //     currentSeaHorse.x = 651 + (y - x)*64/2;
+            //     currentSeaHorse.y = 100 + (y + x)*32/2-20;
+            //     System.out.println("x: " + currentSeaHorse.x + " y: " + currentSeaHorse.y + " 3");
+            //     // x = 651 + (localY-localX)*64/2;
+            //     // y = 100 + (localY+localX)*32/2-20;
+            //     currentSeaHorse.steps = 0;
+            //     currentSeaHorse = null;
+            //     EndPlayerTurn();
+            // }
+            if(currentSeaHorse.indexOnMap == (players.get(currentPlayerNumber).deployIndexOnMap[currentPlayerNumber]) && currentSeaHorse.invincible == 0){
+                currentSeaHorse.indexOnWinPath = 0;
+                currentSeaHorse.onWinPath = 1;
                 currentSeaHorse.steps = 0;
+
                 currentSeaHorse = null;
                 EndPlayerTurn();
             }
+            // else if(){
+            //     currentSeaHorse.Move();
+            //     if (currentSeaHorse.steps == 0) {
+            //         currentSeaHorse = null;
+            //         EndPlayerTurn();
+            //     }
+            // }
+            // else if(currentSeaHorse.indexOnMap == players.get(currentPlayerNumber).deployIndexOnMap[currentPlayerNumber]){
+            //     currentSeaHorse.indexOnWinPath = 0;
+            //     currentSeaHorse.onWinPath = 1;
+            //     currentSeaHorse.Move();
+            //     System.out.println("x: " + currentSeaHorse.x + " y: " + currentSeaHorse.y + " 2");
+            //     if(currentSeaHorse.steps == 0){
+            //         currentSeaHorse = null;
+            //         EndPlayerTurn();
+            //     }
+            // }
+            else{
+                // System.out.println("x: " + currentSeaHorse.x + " y: " + currentSeaHorse.y + " 1");
+                currentSeaHorse.Move();
+                if (currentSeaHorse.steps == 0) {
+                    currentSeaHorse = null;
+                    EndPlayerTurn();
+                }
+            }
+            // if(currentSeaHorse.indexOnMap == (players.get(currentPlayerNumber).deployIndexOnMap[currentPlayerNumber]-1)){
+            //     currentSeaHorse.steps = 0;
+            //     currentSeaHorse = null;
+            // }
+            
             // if(currentSeaHorse.indexOnMap == (players.get(currentPlayerNumber).deployIndexOnMap[currentPlayerNumber]-1)){
 
             // }
@@ -152,11 +198,6 @@ public class MatchManager {
                         //end turn
             
             
-            currentSeaHorse.Move();
-            if (currentSeaHorse.steps == 0) {
-                currentSeaHorse = null;
-                EndPlayerTurn();
-            }
         }
     }
 

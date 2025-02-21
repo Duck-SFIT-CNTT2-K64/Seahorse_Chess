@@ -65,6 +65,7 @@ public class GameThread extends JPanel implements Runnable {
                 if (remainFrameTime < 0) {
                     remainFrameTime = 0;
                 }
+                // dùng while thay vì sleep để giảm thiểu sai số
                 Thread.sleep(remainFrameTime / 1000000);
             } catch (InterruptedException e) {
                 
