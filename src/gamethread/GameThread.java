@@ -27,7 +27,7 @@ public class GameThread extends JPanel implements Runnable {
         // // // this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         // // this.setBackground(new Color(219, 253, 255));
         // // this.setDoubleBuffered(true);
-        this.setLayout(null); //make button free positon in screen 
+        this.setLayout(null);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class GameThread extends JPanel implements Runnable {
 
     @Override
     public void run() {
-        long timePerFrame = 1000000000 / maxFPS; // 1 nano giay = 1 trieu
+        long timePerFrame = 1000000000 / maxFPS;
         repaint();
         Start();
         while (gameThread != null) {

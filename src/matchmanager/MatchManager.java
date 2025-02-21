@@ -5,12 +5,13 @@ import isometricboard.IsometricBoard;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
-import javax.swing.JButton;
+import javax.swing.*;
 import player.Player;
 import seahorse.SeaHorse;
 
@@ -19,6 +20,8 @@ public class MatchManager {
     GameThread gameCanvas;
 
     //BUTTONS
+    Timer rollDiceTimer;
+
     JButton rollDiceButton = new JButton("Roll");
     JButton skipTurnButton = new JButton("Skip");
 
@@ -32,8 +35,7 @@ public class MatchManager {
     public SeaHorse currentSeaHorse = null;
 
     //MAP INFOR
-    
-    //public int[][] coordinates = new int[56][2];
+    public int[][] coordinates = new int[56][2];
     
     //ASSETS
     private int[][] avatarCoordinates = new int[4][2];
@@ -87,12 +89,27 @@ public class MatchManager {
         }
         
         //SETUP BUTTONS
-        rollDiceButton.setBounds(32 * (gameCanvas.maxScreenCol - 4) + 3, 32 * (gameCanvas.maxScreenRow / 2 + 1), 32 * 4 - 6, 32 - 5);
+        rollDiceButton.setBounds(32 * (gameCanvas.maxScreenCol / 2 + 3) + 8, 32 * (gameCanvas.maxScreenRow - 3), 32 * 5 - 16, 32 * 2 - 8);
         // rollDiceButton.setBackground(C);
-        rollDiceButton.addActionListener(e -> RollDice());    
+        rollDiceTimer = new Timer(10, (ActionEvent e) -> {
+            diceNumber = (int) (Math.random() * (6 - 1 + 1)) + 1;
+        });
+
+        rollDiceButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                rollDiceTimer.start();
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                rollDiceTimer.stop();
+                RollDice();
+            }
+        });
         gameCanvas.add(rollDiceButton);
 
-        skipTurnButton.setBounds(32 * (gameCanvas.maxScreenCol - 4) + 3, 32 * (gameCanvas.maxScreenRow / 2 + 2), 32 * 4 - 6, 32 - 5);
+        skipTurnButton.setBounds(32 * (gameCanvas.maxScreenCol / 2 - 5 - 3) + 8, 32 * (gameCanvas.maxScreenRow - 3), 32 * 5 - 16, 32 * 2 - 8);
         skipTurnButton.addActionListener(e -> EndPlayerTurn());
         gameCanvas.add(skipTurnButton);
         
@@ -110,11 +127,11 @@ public class MatchManager {
         }
 
         //ROLL DICE & SKIP PANEL
-        grp.drawImage(rollSkipPanelBackground, (gameCanvas.maxScreenCol - 4) * 32, (gameCanvas.maxScreenRow / 2 - 3) * 32, 32 * 4, 32 * 6, gameCanvas);
+        // grp.drawImage(rollSkipPanelBackground, (gameCanvas.maxScreenCol - 5) * 32, (gameCanvas.maxScreenRow / 2 - 4) * 32, 32 * 5, 32 * 7, gameCanvas);
 
         grp.setFont(new Font("Arial", Font.BOLD, 32 * 2));
         grp.setColor(Color.white);
-        grp.drawString("0" + Integer.toString(diceNumber), 32 * (gameCanvas.maxScreenCol - 3) - 3, 32 * (gameCanvas.maxScreenRow / 2) - 3);
+        grp.drawString("0" + Integer.toString(diceNumber), 32 * (gameCanvas.maxScreenCol - 3), 32 * (gameCanvas.maxScreenRow / 2) - 3);
         
         //PLAYERS AVATAR
         for (int i = 0; i < playerCount; i++) {

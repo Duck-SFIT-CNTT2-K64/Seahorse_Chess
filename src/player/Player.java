@@ -2,8 +2,16 @@ package player;
 
 import gamethread.GameThread;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.Timer;
 import matchmanager.MatchManager;
 import seahorse.SeaHorse;
 
@@ -33,6 +41,12 @@ public class Player {
         {{10,10}, {10,13}, {13,10}, {13,13}},
     };
 
+    //ANIMATION
+    ArrayList<BufferedImage> buttonAnimation = new ArrayList<>(); 
+
+    javax.swing.Timer chooseSeaHorseButtonAnimationTimer;
+    int currentChooseSeaHorseButtonAnimationFrameIndex;
+
     public Player(GameThread _gameCanvas, MatchManager _matchManager, int _playerIndex) {
         gameCanvas = _gameCanvas;
         matchManager = _matchManager;
@@ -61,12 +75,20 @@ public class Player {
         //CHOOSE SEAHORSE BUTTONS
         for (int i = 0; i < 4; i++) {
             int index = i;
+            chooseSeaHorseButton.get(i).setIcon(new ImageIcon("./assets/arrow_button.png"));
+            chooseSeaHorseButton.get(i).setOpaque(false);
+            chooseSeaHorseButton.get(i).setContentAreaFilled(false);
+            chooseSeaHorseButton.get(i).setBorderPainted(false);
             chooseSeaHorseButton.get(i).addActionListener(e -> MoveSeaHorse(index));
         }
-        
+
         //DEPLOY BUTTON
+        deployButton.setIcon(new ImageIcon("./assets/arrow_button.png"));
+        deployButton.setOpaque(false);
+        deployButton.setContentAreaFilled(false);
+        deployButton.setBorderPainted(false);
         deployButton.addActionListener(e -> DeploySeaHorse());
-        deployButton.setBounds(deployCoordinates[playerIndex][0], deployCoordinates[playerIndex][1]-64, 64, 32);
+        deployButton.setBounds(deployCoordinates[playerIndex][0], deployCoordinates[playerIndex][1] - 32, 64, 64);
 
         UnactiveButton();
 
@@ -74,6 +96,30 @@ public class Player {
         for (int i = 0; i < 4; i++) {
             seaHorses.add(new SeaHorse(startStableCoordinates[playerIndex][i][0], startStableCoordinates[playerIndex][i][1], this));
         }
+
+        //SETUP ANIMATION
+        try {
+            File[] animations = new File("./assets/arrow button animation").listFiles();
+            Arrays.sort(animations, Comparator.comparing(File::getName));
+            for (int i = 0; i < animations.length; i++) {
+                buttonAnimation.add(ImageIO.read(animations[i]));
+            }
+        } catch (Exception e) {
+
+        }
+
+        chooseSeaHorseButtonAnimationTimer = new Timer(25, (ActionEvent e) -> {
+            deployButton.setIcon(new ImageIcon(buttonAnimation.get(currentChooseSeaHorseButtonAnimationFrameIndex)));
+
+            for (int i = 0; i < 4; i++) {
+                chooseSeaHorseButton.get(i).setIcon(new ImageIcon(buttonAnimation.get(currentChooseSeaHorseButtonAnimationFrameIndex)));
+            }
+            
+            currentChooseSeaHorseButtonAnimationFrameIndex++;
+            if (currentChooseSeaHorseButtonAnimationFrameIndex == buttonAnimation.size()) {
+                currentChooseSeaHorseButtonAnimationFrameIndex = 0;
+            }
+        });
     }
 
     // public void SetDeployCoordinates(int[] _deployCoordinates) {
@@ -112,15 +158,18 @@ public class Player {
         else {
             deployButton.setVisible(false);
         }
-        
+
+        chooseSeaHorseButtonAnimationTimer.start();
         for (int i = 0; i < 4; i++) {
-            chooseSeaHorseButton.get(i).setBounds(seaHorses.get(i).x, seaHorses.get(i).y-32, 32, 32);
+            chooseSeaHorseButton.get(i).setBounds(seaHorses.get(i).x, seaHorses.get(i).y - 64, 64, 64);
             chooseSeaHorseButton.get(i).setVisible(!seaHorses.get(i).isInStartStable);
         }
     }
 
     public void UnactiveButton() {
         deployButton.setVisible(false);
+        
+        // chooseSeaHorseButtonAnimationTimer.stop();
         for (int i = 0; i < 4; i++) {
             chooseSeaHorseButton.get(i).setVisible(false);
         }
