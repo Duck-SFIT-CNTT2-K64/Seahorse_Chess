@@ -99,7 +99,7 @@ public class Player {
 
         //SETUP ANIMATION
         try {
-            File[] animations = new File("./assets/arrow button animation").listFiles();
+            File[] animations = new File("./assets/arrow_button_animation").listFiles();
             Arrays.sort(animations, Comparator.comparing(File::getName));
             for (int i = 0; i < animations.length; i++) {
                 buttonAnimation.add(ImageIO.read(animations[i]));
